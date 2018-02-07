@@ -4,7 +4,7 @@ import time
 ips = ([sys.argv[x+1] for x in xrange(len(sys.argv)-1)])
 nb = []
 
-FILE_PATH = "iptables.bak"
+FILE_PATH = "/path/to/iptables"
 SEARCH_STRING = "#add ip here\n"
 
 if __name__ == "__main__":
