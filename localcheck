@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# first attempt at solving request from Orange
+
+# first, check if process is active
+# we can do it like this:
+# --- ps -C httpd | wc -l
+# or like this:
+# --- pgrep -x "httpd" | wc -l
+# or like this:
+# --- ps -ef | grep [h]ttpd | wc -l
+
+# second, set low/high warn and crit thresholds
+# output of check will be dinamic: use P flag
+
+# TO DO:
+# add caching
+# graphs
+# misc
+
+serviceName="myservice"
+warnLow=10
+critLow=3
+warnHigh=11
+critHigh=15
+proc=$(pgrep -x "httpd" | wc -l)
+tcpu=$(ps -C httpd -o pcpu= | awk '{s+=$1} END {print s}')
+
+if [ ${proc} -gt 0 ]; then
+        echo "P ${serviceName} tcpu=${tcpu};${warnLow}:${warnHigh};${critLow}:${critHigh}"
+elif [ ${proc} -eq "0" ]; then
+        echo "1 ${serviceName} - UNK"
+fi
