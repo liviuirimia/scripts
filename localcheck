@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# first attempt at solving request from Orange
+# first attempt
 
 # first, check if process is active
 # we can do it like this:
